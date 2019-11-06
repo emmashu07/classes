@@ -1,6 +1,7 @@
 #include <iostream>
 #include <cstring>
 #include <vector>
+#include "media.h"
 
 using namespace std;
 
@@ -12,12 +13,14 @@ int main() {
 	vector<Media*> *mediaList = new vector<Media*>();
 	char input[20];
 	bool running = true;
+	cout << "Type HELP to view the available functions." << endl;
 	while (running) {
 		cin >> input;
 		if (strcmp(input, "HELP") == 0) {
 			cout << "Type SEARCH to find and print media by title or year." << endl;
 			cout << "Type ADD to add media." << endl;
 			cout << "Type DELETE to delete media." << endl;
+		}
 		else if (strcmp(input, "SEARCH") == 0) {
 			search(mediaList);	
 		}
