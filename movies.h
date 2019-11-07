@@ -1,11 +1,12 @@
+#pragma once
 #include <iostream>
 #include "media.h"
 
 using namespace std;
 
-class Music : public Media {
+class Movies : public Media {
     public:
-        Music(char* title, char* director, int year, int duration, int rating, int type);
+        Movies(char* title, char* director, int year, int duration, int rating, int type);
         char* getDirector();
         int getDuration();
         int getRating();
