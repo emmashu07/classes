@@ -1,3 +1,8 @@
+/*
+ * Emma Shu: A program that stores the information of digital media
+ * and can add, search, and delete for the media.
+ */
+
 #include <iostream>
 #include <cstring>
 #include <vector>
@@ -18,7 +23,7 @@ void printMovie(Media *media);
 void addMedia(vector<Media*> *mediaList);
 void deleteMedia(vector<Media*> *mediaList);
 
-int main() {
+int main() { // Asks for commands and executes corresponding function.
 	vector<Media*> *mediaList = new vector<Media*>();
 	char input[20];
 	bool running = true;
@@ -50,8 +55,7 @@ int main() {
 	return 0;
 }
 
-void addMedia(vector<Media*> *mediaList) {
-    cout << "Add." << endl;
+void addMedia(vector<Media*> *mediaList) { // Adds the media based off of the numer given specifying the type.
     int year;
     char* title = new char[20];
     int mediaType;
@@ -75,10 +79,11 @@ void addMedia(vector<Media*> *mediaList) {
     }
     else if (mediaType == 3) {
        mediaList -> push_back(readInMovie(title, year));
-    } 
+    }
+    cout << "Added." << endl; 
 }
 
-Games* readInGame(char* title, int year) {
+Games* readInGame(char* title, int year) { // Read in a game type media.
     char* publisher = new char[20];
     int rating;
     cout << "Please enter the name of the publisher for your game." << endl;
@@ -91,7 +96,7 @@ Games* readInGame(char* title, int year) {
     return game;
 }
 
-Music* readInMusic(char* title, int year) {
+Music* readInMusic(char* title, int year) { // Read in a music type media.
     char* artist = new char[20];
     char* publisher = new char[20];
     int duration;
@@ -107,7 +112,7 @@ Music* readInMusic(char* title, int year) {
     return music;
 }
 
-Movies* readInMovie(char* title, int year) {
+Movies* readInMovie(char* title, int year) { // Read in a movie type media.
     char* director = new char[20];
     int duration;
     int rating;
@@ -124,7 +129,7 @@ Movies* readInMovie(char* title, int year) {
     return movie;
 }
 
-void search(vector<Media*> *mediaList) {
+void search(vector<Media*> *mediaList) { // Search based off of the title or year.
     int input;
     vector<Media*>::iterator it; 
     cout << "Please enter a 1 if you want to search by title." << endl;
@@ -155,6 +160,51 @@ void search(vector<Media*> *mediaList) {
     } 
 }
 
-void deleteMedia(vector<Media*> *mediaList) {
-    cout << "Delete." << endl;
+void deleteMedia(vector<Media*> *mediaList) { // Delete based off of the title or year.
+    int input;
+    char* yesno = new char[2];
+    vector<Media*>::iterator it; 
+    cout << "Please enter a 1 if you want to search by title." << endl;
+    cout << "Please enter a 2 if you want to search by year." << endl;
+    cin >> input;
+    cin.ignore(100, '\n');
+    if (input == 1) {
+        char* title = new char[20];
+        cout << "Please enter the title of the media(s) you want to delete." << endl;
+        cin.get(title, 20, '\n');
+        cin.ignore(100, '\n');
+        for(it = mediaList -> begin(); it < mediaList -> end(); it++) {
+            if(strcmp((*it)->getTitle(),title) == 0) {
+                (*it)->print();
+                cout << "Are you sure you want to delete these? Y/N" << endl;
+                cin >> yesno;
+                cin.ignore(100, '\n');
+                if (strcmp(yesno, "Y") == 0) {
+                    delete (*it);
+                    mediaList -> erase(it);
+                    break;
+                }
+            }  
+        }
+    }
+    else if (input == 2) {
+        int year;
+        cout << "Please enter the year of the media(s) you want to delete." << endl;
+        cin >> year;
+        cin.ignore(100, '\n');
+        for(it = mediaList -> begin(); it < mediaList -> end(); it++) {
+            if(year == (*it)->getYear()) {
+                (*it)->print();
+                cout << "Are you sure you want to delete these? Y/N" << endl;
+                cin >> yesno;
+                cin.ignore(100, '\n');
+                if (strcmp(yesno, "Y") == 0) {
+                    delete (*it);
+                    mediaList -> erase(it);
+                    break;
+                }
+            }  
+        }   
+    }    
+    cout << "Deleted." << endl;
 }
