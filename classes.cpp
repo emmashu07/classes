@@ -10,6 +10,11 @@ using namespace std;
 
 void search(vector<Media*> *mediaList);
 Games* readInGame(char* title, int year);
+Music* readInMusic(char* title, int year);
+Movies* readInMovie(char* title, int year);
+void printGame(Media *media);
+void printMusic(Media *media);
+void printMovie(Media *media);
 void addMedia(vector<Media*> *mediaList);
 void deleteMedia(vector<Media*> *mediaList);
 
@@ -65,6 +70,12 @@ void addMedia(vector<Media*> *mediaList) {
     if (mediaType == 1) {
         mediaList -> push_back(readInGame(title, year));
     }
+    else if (mediaType == 2) {
+       mediaList -> push_back(readInMusic(title, year));
+    }
+    else if (mediaType == 3) {
+       mediaList -> push_back(readInMovie(title, year));
+    } 
 }
 
 Games* readInGame(char* title, int year) {
@@ -72,19 +83,76 @@ Games* readInGame(char* title, int year) {
     int rating;
     cout << "Please enter the name of the publisher for your game." << endl;
     cin >> publisher;
+    cin.ignore(100, '\n');
     cout << "Please enter the rating of your game out of 10." << endl;
     cin >> rating;
-    Games *game = new Games(title, publisher, year, rating, 0);
-    cout << game->getTitle() << endl;
-    cout << game->getPublisher() << endl;
-    cout << game->getYear() << endl;
-    cout << game->getRating() << endl;
-    cout << game->getType() << endl;
+    cin.ignore(100, '\n');
+    Games *game = new Games(title, publisher, year, rating, 0); 
     return game;
 }
 
+Music* readInMusic(char* title, int year) {
+    char* artist = new char[20];
+    char* publisher = new char[20];
+    int duration;
+    cout << "Please enter the name of the artist for your music." << endl;
+    cin >> artist;
+    cin.ignore(100, '\n');
+    cout << "Please enter the name of the publisher for your music." << endl;
+    cin >> publisher;
+    cin.ignore(100, '\n');
+    cout << "Please enter the duration of your music in seconds." << endl;
+    cin.ignore(100, '\n');
+    Music *music = new Music(title, artist, publisher, year, duration, 1);
+    return music;
+}
+
+Movies* readInMovie(char* title, int year) {
+    char* director = new char[20];
+    int duration;
+    int rating;
+    cout << "Please enter the name of the director for your movie." << endl;
+    cin >> director;
+    cin.ignore(100, '\n');
+    cout << "Please enter the duration of your movie in minutes." << endl;
+    cin >> duration;
+    cin.ignore(100, '\n');
+    cout << "Please enter the rating of your movie out of 10." << endl;
+    cin >> rating;
+    cin.ignore(100, '\n');
+    Movies *movie = new Movies(title, director, year, duration, rating, 2);
+    return movie;
+}
+
 void search(vector<Media*> *mediaList) {
-    cout << "Search." << endl;
+    int input;
+    vector<Media*>::iterator it; 
+    cout << "Please enter a 1 if you want to search by title." << endl;
+    cout << "Please enter a 2 if you want to search by year." << endl;
+    cin >> input;
+    cin.ignore(100, '\n');
+    if (input == 1) {
+        char* title = new char[20];
+        cout << "Please enter the title you want to search for." << endl;
+        cin.get(title, 20, '\n');
+        cin.ignore(100, '\n');
+        for(it = mediaList -> begin(); it < mediaList -> end(); it++) {
+            if(strcmp((*it)->getTitle(),title) == 0) {
+                (*it)->print();
+            }  
+        }
+    }
+    else if (input == 2) {
+        int year;
+        cout << "Please enter the year you want to search for." << endl;
+        cin >> year;
+        cin.ignore(100, '\n');
+        for(it = mediaList -> begin(); it < mediaList -> end(); it++) {
+            if(year == (*it)->getYear()) {
+                (*it)->print();
+            }  
+        }   
+    } 
 }
 
 void deleteMedia(vector<Media*> *mediaList) {

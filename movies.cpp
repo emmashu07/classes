@@ -9,6 +9,13 @@ Movies::Movies(char* title, char* director, int year, int duration, int rating, 
     this->rating = rating;
 }
 
+void Movies::print() {
+    Media::print();
+    cout << "Director: " << director << endl;
+    cout << "Duration: " << duration << endl;
+    cout << "Rating: " << rating << endl;
+}
+
 char* Movies::getDirector() {
     return director;
 }

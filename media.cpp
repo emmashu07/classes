@@ -9,6 +9,11 @@ Media::Media(char* title, int year, int type) {
     this->type = type;
 }
 
+void Media::print() {
+    cout << "Title: " << title << endl;
+    cout << "Year: " << year << endl;
+}
+
 char* Media::getTitle() {
 	return title;
 }
