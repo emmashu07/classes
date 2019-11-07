@@ -3,20 +3,20 @@
 
 using namespace std;
 
-Music::Music(char* title, char* director, int year, int duration, int rating, int type): Media(title, year, type) {
+Movies::Movies(char* title, char* director, int year, int duration, int rating, int type): Media(title, year, type) {
     this->director = director;
     this->duration = duration;
     this->rating = rating;
 }
 
-char* Music::getDirector() {
+char* Movies::getDirector() {
     return director;
 }
 
-int Music::getDuration() {
+int Movies::getDuration() {
     return duration;
 }
 
-int Music::getRating() {
+int Movies::getRating() {
     return rating;
 }
