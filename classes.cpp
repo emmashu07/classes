@@ -53,6 +53,7 @@ int main() { // Asks for commands and executes corresponding function.
 			cout << "Please enter a valid command. Type HELP for help." << endl;
 		}
 	}
+	releaseMemory(mediaList);
 	return 0;
 }
 
@@ -187,6 +188,7 @@ void deleteMedia(vector<Media*> *mediaList) { // Delete based off of the title o
                 }
             }  
         }
+	delete []title;
     }
     else if (input == 2) {
         int year;
@@ -207,6 +209,7 @@ void deleteMedia(vector<Media*> *mediaList) { // Delete based off of the title o
             }  
         }   
     }    
+    delete []yesno;
     cout << "Deleted." << endl;
 }
 void releaseMemory(vector<Media*> *mediaList) {
