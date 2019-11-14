@@ -8,6 +8,10 @@ Games::Games(char* title, char* publisher, int year, int rating, int type) : Med
     this->rating = rating;
 }
 
+Games::~Games() {
+    delete []publisher;
+}
+
 void Games::print() {
     Media::print();
     cout << "Publisher: " << publisher << endl;

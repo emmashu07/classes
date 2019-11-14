@@ -9,6 +9,11 @@ Music::Music(char* title, char* artist, char* publisher, int year, int duration,
     this->duration = duration;
 }
 
+Music::~Music() {
+    delete []artist;
+    delete []publisher;
+}
+
 void Music::print() {
     Media::print();
     cout << "Artist: " << artist << endl;

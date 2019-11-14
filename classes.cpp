@@ -22,6 +22,7 @@ void printMusic(Media *media);
 void printMovie(Media *media);
 void addMedia(vector<Media*> *mediaList);
 void deleteMedia(vector<Media*> *mediaList);
+void releaseMemory(vector<Media*> *mediaList);
 
 int main() { // Asks for commands and executes corresponding function.
 	vector<Media*> *mediaList = new vector<Media*>();
@@ -207,4 +208,10 @@ void deleteMedia(vector<Media*> *mediaList) { // Delete based off of the title o
         }   
     }    
     cout << "Deleted." << endl;
+}
+void releaseMemory(vector<Media*> *mediaList) {
+    for(auto it = mediaList -> begin(); it < mediaList -> end(); it++) {
+        delete (*it);
+    }
+    delete mediaList;
 }

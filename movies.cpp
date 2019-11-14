@@ -9,6 +9,10 @@ Movies::Movies(char* title, char* director, int year, int duration, int rating, 
     this->rating = rating;
 }
 
+Movies::~Movies() {
+    delete []director;
+}
+
 void Movies::print() {
     Media::print();
     cout << "Director: " << director << endl;
