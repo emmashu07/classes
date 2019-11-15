@@ -1,3 +1,7 @@
+/*
+ * Emma Shu, 11/15/2019: Header file for movies, child class to Media.
+ */
+
 #pragma once
 #include <iostream>
 #include "media.h"

@@ -1,3 +1,7 @@
+/*
+ * Emma Shu, 11/15/2019: Header file for music, a child class of Media.
+ */
+
 #pragma once
 #include <iostream>
 #include "media.h"
