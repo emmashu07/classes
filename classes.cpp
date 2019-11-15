@@ -109,6 +109,7 @@ Music* readInMusic(char* title, int year) { // Read in a music type media.
     cin >> publisher;
     cin.ignore(100, '\n');
     cout << "Please enter the duration of your music in seconds." << endl;
+    cin >> duration;
     cin.ignore(100, '\n');
     Music *music = new Music(title, artist, publisher, year, duration, 1);
     return music;
@@ -213,7 +214,8 @@ void deleteMedia(vector<Media*> *mediaList) { // Delete based off of the title o
     cout << "Deleted." << endl;
 }
 void releaseMemory(vector<Media*> *mediaList) {
-    for(auto it = mediaList -> begin(); it < mediaList -> end(); it++) {
+    vector<Media*>::iterator it; 
+    for(it = mediaList -> begin(); it < mediaList -> end(); it++) {
         delete (*it);
     }
     delete mediaList;
